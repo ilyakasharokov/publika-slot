@@ -25,8 +25,11 @@ import quest from '/img/quest.png';
   document.querySelector('#form').addEventListener('submit', submitEmail);
   /*document.querySelector('#reseter').addEventListener('click', init);*/
 
+  let lastBones = ['<img src="' + trash + '">', '<img src="' + quest + '">', '<img src="' + balaklava + '">'];
+
   function init(firstInit = true, groups = 1, duration = 1, win = false) {
     const bones = [];
+    let index = 0;
     for (const door of doors) {
       if (firstInit) {
         door.dataset.spinned = '0';
@@ -36,7 +39,7 @@ import quest from '/img/quest.png';
 
       const boxes = door.querySelector('.boxes');
       const boxesClone = boxes.cloneNode(false);
-      const pool = [''];
+      const pool = [lastBones[index]];
 
       if (!firstInit) {
         const arr = [];
@@ -84,11 +87,13 @@ import quest from '/img/quest.png';
       boxesClone.style.transitionDuration = `${duration > 0 ? duration : 1}s`;
       boxesClone.style.transform = `translateY(-${door.clientHeight * (pool.length - 1)}px)`;
       door.replaceChild(boxesClone, boxes);
+      index++;
     }
     if(!win && bones[0] === bones[1] === bones[2]){
       init(firstInit,groups,duration, win);
       return
     }
+    lastBones = [bones[0],bones[1],bones[2]]
   }
 
   async function spin() {
@@ -142,9 +147,13 @@ import quest from '/img/quest.png';
   }
 
   function onWin(code){
-    setTimeout(function () {
+    setTimeout(async function () {
       document.body.classList.add("win");
       document.getElementById("mystery").textContent = "PROMOCODE: \n" + code;
+
+      let response = await fetch( API_HOST + "win", { method: "POST", body:  code})
+      response = await response.text()
+
     }, 1000);
   }
 
