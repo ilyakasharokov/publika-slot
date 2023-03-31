@@ -89,7 +89,7 @@ import quest from '/img/quest.png';
       door.replaceChild(boxesClone, boxes);
       index++;
     }
-    if(!win && bones[0] === bones[1] === bones[2]){
+    if(!win && bones[0] == bones[1] & bones[1] == bones[2]){
       init(firstInit,groups,duration, win);
       return
     }
