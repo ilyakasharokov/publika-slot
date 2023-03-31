@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Mystery</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,39 +24,45 @@
 </head>
 
 <body>
+  <div class="overlay visible" id="overlay" >
+    <form class="form" id="form">
+      <input type="email" id="email" name="email" placeholder="E-mail">
+      <input type="submit"  value="GO">
+    </form>
+    <div id="mystery">
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+    </div>
+  </div>
+  <div id="app">
+    <div class="slot" id="slot">
+      <div class="arm"></div>
+      <div class="doors">
+        <div class="door">
+          <div class="boxes">
+            <!-- <div class="box">?</div> -->
+          </div>
+        </div>
+
+        <div class="door">
+          <div class="boxes">
+            <!-- <div class="box">?</div> -->
+          </div>
+        </div>
+
+        <div class="door">
+          <div class="boxes">
+            <!-- <div class="box">?</div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
 
-  <div id="app">
-    <div class="doors">
-      <div class="door">
-        <div class="boxes">
-          <!-- <div class="box">?</div> -->
-        </div>
-      </div>
 
-      <div class="door">
-        <div class="boxes">
-          <!-- <div class="box">?</div> -->
-        </div>
-      </div>
-
-      <div class="door">
-        <div class="boxes">
-          <!-- <div class="box">?</div> -->
-        </div>
-      </div>
-    </div>
-
-    <div class="buttons">
-      <button id="spinner">Play</button>
-      <button id="reseter">Reset</button>
-    </div>
-  </div>
 
 
 </body>
