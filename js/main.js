@@ -4,6 +4,7 @@ import balaklava from '/img/balaklava.jpg';
 import pblk from '/img/pblk.png';
 import trash from '/img/trash.png';
 import quest from '/img/quest.png';
+import zvuk from '/audio/zvuk.mp3';
 
 (function () {
   //const API_HOST = "http://mystery.publikagaultier.com/api/";
@@ -69,6 +70,9 @@ import quest from '/img/quest.png';
           function () {
             this.querySelectorAll('.box').forEach((box, index) => {
               box.style.filter = 'blur(0)';
+              setTimeout(()=>{
+                box.style.filter = 'blur(0)';
+              }, 0);
               if (index > 0) this.removeChild(box);
             });
           },
@@ -89,11 +93,13 @@ import quest from '/img/quest.png';
       door.replaceChild(boxesClone, boxes);
       index++;
     }
-    if(!win && bones[0] == bones[1] & bones[1] == bones[2]){
-      init(firstInit,groups,duration, win);
-      return
+    if(!firstInit){
+      if(!win && bones[0] == bones[1] & bones[1] == bones[2]) {
+        init(firstInit, groups, duration, win);
+        return
+      }
+      lastBones = [bones[0],bones[1],bones[2]]
     }
-    lastBones = [bones[0],bones[1],bones[2]]
   }
 
   async function spin() {
@@ -134,6 +140,8 @@ import quest from '/img/quest.png';
 
   async function submitEmail(e) {
     e.preventDefault();
+    var audio = new Audio(zvuk);
+    audio.play();
     document.querySelector('#email').classList.remove("error");
     if(validateEmail(document.querySelector('#email').value)) {
       email = document.querySelector('#email').value;
