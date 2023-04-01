@@ -8,8 +8,8 @@ import zvuk from '/audio/zvuk.mp3';
 import pisk from '/audio/pisk.wav';
 
 (function () {
-  //const API_HOST = "http://mystery.publikagaultier.com/api/";
-  const API_HOST = "http://localhost:8090/"
+  const API_HOST = "http://mystery.publikagaultier.com/api/";
+  // const API_HOST = "http://localhost:8090/"
   let finish = false;
   let email = "not set";
 
@@ -60,7 +60,7 @@ import pisk from '/audio/pisk.wav';
           function () {
             door.dataset.spinned = '1';
             this.querySelectorAll('.box').forEach((box) => {
-              box.style.filter = 'blur(1px)';
+              // box.style.filter = 'blur(1px)';
             });
           },
           { once: true }
