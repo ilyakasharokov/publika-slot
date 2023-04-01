@@ -5,6 +5,7 @@ import pblk from '/img/pblk.png';
 import trash from '/img/trash.png';
 import quest from '/img/quest.png';
 import zvuk from '/audio/zvuk.mp3';
+import pisk from '/audio/pisk.wav';
 
 (function () {
   //const API_HOST = "http://mystery.publikagaultier.com/api/";
@@ -106,6 +107,8 @@ import zvuk from '/audio/zvuk.mp3';
     if(isSpinning || finish){
       return;
     }
+    var audio = new Audio(pisk);
+    audio.play();
     document.querySelector('.arm').classList.add("active");
     isSpinning = true;
     let response = await fetch( API_HOST + "lottery", { method: "POST", body:  JSON.stringify({email: email })})
