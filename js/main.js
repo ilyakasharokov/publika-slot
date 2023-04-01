@@ -6,6 +6,7 @@ import trash from '/img/trash.png';
 import quest from '/img/quest.png';
 import zvuk from '/audio/zvuk.mp3';
 import pisk from '/audio/pisk.wav';
+import atmo from '/audio/atmo.mp3';
 
 (function () {
   const API_HOST = "http://mystery.publikagaultier.com/api/";
@@ -107,8 +108,8 @@ import pisk from '/audio/pisk.wav';
     if(isSpinning || finish){
       return;
     }
-    var audio = new Audio(pisk);
-    audio.play();
+    /* var audio = new Audio(pisk);
+    audio.play(); */
     document.querySelector('.arm').classList.add("active");
     isSpinning = true;
     let response = await fetch( API_HOST + "lottery", { method: "POST", body:  JSON.stringify({email: email })})
@@ -124,6 +125,7 @@ import pisk from '/audio/pisk.wav';
     }
     setTimeout(()=>{
       isSpinning = false;
+      // audio.play();
     },1000);
     document.querySelector('.arm').classList.remove("active");
     if(response.code){
@@ -143,8 +145,15 @@ import pisk from '/audio/pisk.wav';
 
   async function submitEmail(e) {
     e.preventDefault();
-    var audio = new Audio(zvuk);
+    var audio = new Audio(atmo);
+    audio.attributes
     audio.play();
+
+    audio.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+
     document.querySelector('#email').classList.remove("error");
     if(validateEmail(document.querySelector('#email').value)) {
       email = document.querySelector('#email').value;
