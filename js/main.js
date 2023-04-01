@@ -7,10 +7,13 @@ import quest from '/img/quest.png';
 import zvuk from '/audio/zvuk.mp3';
 import pisk from '/audio/pisk.wav';
 import atmo from '/audio/atmo.mp3';
+import ruchka from '/audio/ruchka.mp3';
+import vr from '/audio/1vr.mp3';
+import casino from '/audio/casino.mp3';
 
 (function () {
-  const API_HOST = "http://mystery.publikagaultier.com/api/";
-  // const API_HOST = "http://localhost:8090/"
+  // const API_HOST = "http://mystery.publikagaultier.com/api/";
+  const API_HOST = "http://localhost:8090/"
   let finish = false;
   let email = "not set";
 
@@ -108,8 +111,8 @@ import atmo from '/audio/atmo.mp3';
     if(isSpinning || finish){
       return;
     }
-    /* var audio = new Audio(pisk);
-    audio.play(); */
+    var audio = new Audio(ruchka);
+    audio.play();
     document.querySelector('.arm').classList.add("active");
     isSpinning = true;
     let response = await fetch( API_HOST + "lottery", { method: "POST", body:  JSON.stringify({email: email })})
@@ -123,6 +126,8 @@ import atmo from '/audio/atmo.mp3';
       boxes.style.transform = 'translateY(0)';
       await new Promise((resolve) => setTimeout(resolve, duration * 100));
     }
+    var vra = new Audio(vr);
+    vra.play();
     setTimeout(()=>{
       isSpinning = false;
       // audio.play();
@@ -146,7 +151,7 @@ import atmo from '/audio/atmo.mp3';
   async function submitEmail(e) {
     e.preventDefault();
     var audio = new Audio(atmo);
-    audio.attributes
+    audio.volume = 0.5;
     audio.play();
 
     audio.addEventListener('ended', function() {
@@ -168,6 +173,8 @@ import atmo from '/audio/atmo.mp3';
 
   function onWin(code){
     setTimeout(async function () {
+      var audio = new Audio(casino);
+      audio.play();
       document.body.classList.add("win");
       document.getElementById("mystery").textContent = "PROMOCODE: \n" + code;
 
